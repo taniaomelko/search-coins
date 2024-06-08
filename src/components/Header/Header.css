@@ -1,0 +1,55 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-grey-400);
+}
+
+.header__wrapper {
+  position: relative;
+  text-align: right;
+}
+
+.header__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background-color: var(--color-dark);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.header__button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header__button.open {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--color-grey-400);
+}
+
+.header__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-dark);
+  width: 300px;
+}
+
+.header__dropdown-wrapper {
+  border: 2px solid var(--color-grey-500);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.header__dropdown-message {
+  padding: 10px;
+  text-align: center;
+}

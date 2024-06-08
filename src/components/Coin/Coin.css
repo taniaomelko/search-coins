@@ -1,0 +1,15 @@
+.coin {
+  padding: 20px 0;
+}
+
+.coin__reset {
+  transition: opacity 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--color-grey-300);
+  cursor: pointer;
+}
+
+.coin__reset:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,71 @@
+:root {
+  --color-dark: #131214;
+  --color-grey-500: #383638;
+  --color-grey-400: #595759;
+  --color-grey-300: #A6A5A6;
+  --color-grey-200: #D7D6D7;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+  background-color: unset;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+input {
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-dark);
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+svg {
+  display: block;
+}
+.container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
