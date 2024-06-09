@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './Dropdown.css';
 import { SearchIcon, CrossIcon, StarIcon } from '../../icons';
-import { ICommonProps, EActiveTab } from '../../types';
+import { ICommonProps, EActiveTab, ICoin } from '../../types';
+import { useVirtualScroll } from '../../hooks/useVirtualScroll';
 
 interface DropdownProps extends ICommonProps {
   setIsOpen: (state: boolean) => void;
@@ -25,7 +26,27 @@ export const Dropdown: React.FC<DropdownProps> = ({
   handleSelectCoin,
   toggleFavorite,
   setIsOpen
-}) => {
+}) => {  
+  const listRef = useRef<HTMLUListElement>(null);
+  const [listItemHeight, setListItemHeight] = useState(0); 
+
+  useEffect(() => {
+    if (listRef.current) {
+      // Create a temporary list item to measure its height
+      const tempListItem = listRef.current.appendChild(document.createElement('li'));
+      Object.assign(tempListItem, {
+        className: 'dropdown__list-item',
+        style: { visibility: 'hidden' },
+        textContent: 'Temporary item'
+      });
+      const height = tempListItem.offsetHeight;
+      listRef.current.removeChild(tempListItem);
+      setListItemHeight(height);
+    }
+  }, [data]);
+
+  const [slidingWindow] = useVirtualScroll(listRef, data, listItemHeight);
+
   return (
     <div className="dropdown">
       <div className="dropdown__search">
@@ -83,8 +104,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
       )}
 
       {!isLoading && !isError && (
-        <ul className="dropdown__list">
-          {data.map(coin => {
+        <ul 
+          className="dropdown__list" 
+          ref={listRef}
+        >
+          {(slidingWindow as ICoin[]).map((coin) => {
             return (
               <li
                 key={coin.name}
