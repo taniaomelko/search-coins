@@ -108,25 +108,31 @@ export const Dropdown: React.FC<DropdownProps> = ({
           className="dropdown__list" 
           ref={listRef}
         >
-          {(slidingWindow as ICoin[]).map((coin) => {
-            return (
-              <li
-                key={coin.name}
-                className={`dropdown__list-item ${coin.name === selectedCoin ? 'selected' : ''}`}
-                onClick={() => {handleSelectCoin(coin.name); setIsOpen(false)}}
-              >
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFavorite(coin.name);
-                  }}
+          {data.length ? (
+            (slidingWindow as ICoin[]).map((coin) => {
+              return (
+                <li
+                  key={coin.name}
+                  className={`dropdown__list-item ${coin.name === selectedCoin ? 'selected' : ''}`}
+                  onClick={() => {handleSelectCoin(coin.name); setIsOpen(false)}}
                 >
-                  <StarIcon className={`dropdown__list-icon ${(coin.isFavorite) ? 'favorite' : ''}`} />
-                </div>
-                {coin.name}
-              </li>
-            );
-          })}
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(coin.name);
+                    }}
+                  >
+                    <StarIcon className={`dropdown__list-icon ${(coin.isFavorite) ? 'favorite' : ''}`} />
+                  </div>
+                  {coin.name}
+                </li>
+              );
+            })
+          ) : (
+            <div className="dropdown__message">
+              No coins found.
+            </div>
+          )}
         </ul>
       )}
     </div>

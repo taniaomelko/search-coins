@@ -41,6 +41,7 @@
   z-index: 100;
   background-color: var(--color-dark);
   width: 300px;
+  text-align: left;
 }
 
 .header__dropdown-wrapper {
